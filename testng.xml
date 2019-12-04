@@ -1,0 +1,25 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Meetup TestSuite" preserve-order="true" allow-return-values="true" verbose="1">
+    <parameter name="host" value="https://jfbarrios.com/bmi-calculator/"/>
+    <parameter name="env" value="prod"/>
+    <parameter name="groupsToRun" value="[Ljava.lang.String;@2fe82122"/>
+    <parameter name="runOn" value="safari"/>
+    <parameter name="browsers" value="firefox59,chrome78"/>
+    <test name="TestSuite" parallel="instances">
+        
+        <groups>
+            <run>
+                <include name="BMITrackerCalculation"/>
+                </run>
+        </groups>
+        
+        <classes>
+            <class name="factories.FactoryTests"/>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="listeners.MeetupListener"/>
+    </listeners>
+</suite>

@@ -1,0 +1,27 @@
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Meetup TestSuite" preserve-order="true" allow-return-values="true" verbose="1">
+    <parameter name="host" value="{{host}}"/>
+    <parameter name="env" value="{{env}}"/>
+    <parameter name="groupsToRun" value="{{groupsToRun}}"/>
+    <parameter name="runOn" value="{{runOn}}"/>
+    <parameter name="browsers" value="{{browsers}}"/>
+    <test name="TestSuite" parallel="instances">
+        {% if groupsToRun|length > 0 %}
+        <groups>
+            <run>
+                {% for group in groupsToRun -%}
+                <include name="{{ group }}"/>
+                {% endfor -%}
+            </run>
+        </groups>
+        {% endif %}
+        <classes>
+            <class name="factories.FactoryTests"/>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="listeners.MeetupListener"/>
+    </listeners>
+</suite>
